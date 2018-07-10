@@ -1,39 +1,46 @@
 <% include partials/header %>
-  <!-- <h1>TEST EJS</h1> -->
   <h1>Add Customers</h1>
 
-  <% if(errors != undefined) { %>
-    <ul>
-    <% errors.forEach(function(err){ %>
-      <li><%= err.msg %></li>
-    <% }) %>
-    </ul>
-  <% } %>
-
   <form method="POST" action="/users/add">
-    <label for="firstName">First Name</label>
+    <label for="firs tName">First Name</label>
     <br>
-    <input type="text" name="firstName">
+    <input type="text" name="first_name">
     <br>
-    <label for="lastName">Last Name</label>
+    <label for="last Name">Last Name</label>
     <br>
-    <input type="text" name="lastName">
+    <input type="text" name="last_name">
     <br>
     <label for="email">Email</label>
     <br>
     <input type="text" name="email">
     <br>
-    <input type="submit" value="Submil">
+    <input type="submit" value="Submit">
   </form>
 
-  <h1><%= title %></h1>  
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Express Test</title>
+</head>
+<body> -->
+  <!-- <h1>TEST EJS</h1> -->
+  <!-- Ctrl u displays the html and the generated content (Customers instead of title)  -->
+  <h1><%= title %></h1>    
   <ul>
-    <% users.forEach(function(u){ %>
+    <% users.forEach(function(user){ %>
+      <!-- This needs to be iterated and each object needs to be printed out -->
+      <!-- [object Object],[object Object],[object Object] -->
+      <!-- <%= users %> -->
       <li>
-        <%= u.firstName %>
-        <%= u.lastName %>
-        <%= u.email %>
-      </li>
+        <%= user.firstName %>
+        <%= user.lastName %>
+        <%= user.email %>
+      </li>      
     <% }) %>
   </ul>
+<!-- </body>
+</html> -->
 <% include partials/footer %>
