@@ -1,0 +1,17 @@
+mongo
+
+show dbs
+
+use customerapp
+
+db.createCollection('users');
+
+db.users.insert([{first_name: 'Raluca', last_name: 'Rom', email: 'rala@gmail.com'}, {first_name: 'Aga', last_name: 'Pol', email: 'aga@gmail.com'}, {first_name: 'Ewe', last_name: 'Pol', email: 'ewe@gmail.com'}]);
+
+db.users.insert({first_name: 'Catherine', last_name: 'Irl', email: 'kat@gmail.com'});
+
+db.users.find();
+
+db.users.find().pretty();
+
+npm i mongojs --save

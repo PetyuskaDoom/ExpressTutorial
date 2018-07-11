@@ -1,6 +1,14 @@
 <% include partials/header %>
   <h1>Add Customers</h1>
 
+  <% if(errors != undefined) { %>
+    <ul>
+      <% errors.forEach(function(err){ %>
+        <li><%= err.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+
   <form method="POST" action="/users/add">
     <label for="firs tName">First Name</label>
     <br>
@@ -35,9 +43,10 @@
       <!-- [object Object],[object Object],[object Object] -->
       <!-- <%= users %> -->
       <li>
-        <%= user.firstName %>
-        <%= user.lastName %>
+        <%= user.first_name %>
+        <%= user.last_name %>, 
         <%= user.email %>
+        - <a href="#" class="deleteUser" data-id="<%= user._id %>">Delete</a>
       </li>      
     <% }) %>
   </ul>
