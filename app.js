@@ -7,7 +7,7 @@ var path = require('path');
 var expressValidator = require('express-validator');
 var mongojs = require('mongojs');
 var db = mongojs('customerapp', ['users'])
-
+var ObjectId = mongojs.ObjectId;
 var app = express();
 var port = 3000;
 
@@ -113,7 +113,6 @@ app.post('/users/add', function(req, res) {
 
     res.render('index', {
       title: 'Customers',
-      // users: users,
       users: users,
       errors: errors
     });
@@ -126,7 +125,7 @@ app.post('/users/add', function(req, res) {
       email: req.body.email
     }
     console.log(newUser);
-    console.log('SUCCESS!!!');
+    // console.log('NEW USER ADDED');
     db.users.insert(newUser, function(err, result) {
       if(err) {
         console.log(err);
@@ -141,11 +140,18 @@ app.post('/users/add', function(req, res) {
 
 app.delete('/users/delete/:id', function(req, res) {
   console.log(req.params.id);
+  db.users.remove({_id: ObjectId(req.params.id), function(err, result) {
+    if(err) {
+      console.log(err);
+    }
+    res.redirect('/');
+  }});
+  console.log('RECORD DELETED');
 });
 
 app.listen(port, function() {
   console.log(`Server started on port ${port}`);
 });
 
-// Install nodemon to monitor for any changes node.js (app.js) application and automatically restart the server when a page is refreshed with new data. No need to press Ctrl + c and type node app every time a change is made.
+// Install nodemon to monitor for any changes in the node.js (app.js) application and automatically restart the server when a page is refreshed with new data. No need to press Ctrl + c and type node app every time a change is made. Type nodemon in the terminal to launch the app.
 
